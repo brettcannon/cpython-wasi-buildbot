@@ -27,3 +27,11 @@ RUN mkdir --parents ${WASMTIME_HOME} && \
     xz --decompress | \
     tar --strip-components 1 --directory ${WASMTIME_HOME} -x && \
     ln -s ${WASMTIME_HOME}/wasmtime /usr/local/bin
+
+# https://devguide.python.org/testing/new-buildbot-worker/#setting-up-the-buildbot-worker
+RUN useradd -m buildbot
+
+USER buildbot
+WORKDIR /home/buildbot
+
+RUN mkdir buildarea
